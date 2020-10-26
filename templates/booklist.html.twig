@@ -1,0 +1,22 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+
+<div style="display:block; width: 600px; margin: 30px">
+  <h2 class="display-4">Список книг</h2>
+    <ul>
+      {% if result is iterable %}
+        {% for book in result %}
+            <li class="lead">   {{ book.getName() }}, {{book.getYear()}}, {{book.getAuthor()}}, 
+            <span><a href="/editbook/{{book.getId()}}">Редактировать</a></span>
+            <span><a href="/deletebook/{{book.getId()}}" style="color:red;">Удалить</a></span>
+            </li>
+        {% endfor %}
+        {% else %}
+          {# users is probably a string #}
+          {{ result }}
+      {% endif %}
+    </ul>
+</div>
+
+{% endblock %}
